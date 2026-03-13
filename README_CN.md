@@ -613,11 +613,11 @@ claude
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Anthropic 的 Claude CLI，执行层骨干
 - [Codex CLI](https://github.com/openai/codex) — OpenAI 的 CLI，作为 MCP server 实现跨模型审稿
 
-**Zotero 集成**
+**Zotero 集成**（[安装指南](#-zotero-集成可选)）
 - [zotero-mcp](https://github.com/54yyyu/zotero-mcp) — Zotero MCP server，语义搜索 + PDF 标注
 - [Zotero](https://www.zotero.org/) — 开源文献管理器
 
-**Obsidian 集成**
+**Obsidian 集成**（[安装指南](#-obsidian-集成可选)）
 - [mcpvault](https://github.com/bitbonsai/mcpvault) — Obsidian vault MCP server（不需要打开 Obsidian）
 - [obsidian-skills](https://github.com/kepano/obsidian-skills) — Obsidian CEO Steph Ango 维护的 Claude Code skills
 

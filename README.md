@@ -697,11 +697,11 @@ This project builds on and integrates with many excellent open-source projects:
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Anthropic's CLI for Claude, the execution backbone
 - [Codex CLI](https://github.com/openai/codex) — OpenAI's CLI, used as MCP server for cross-model review
 
-**Zotero Integration**
+**Zotero Integration** ([setup guide](#-zotero-integration-optional))
 - [zotero-mcp](https://github.com/54yyyu/zotero-mcp) — Zotero MCP server with semantic search and PDF annotations
 - [Zotero](https://www.zotero.org/) — Open-source reference manager
 
-**Obsidian Integration**
+**Obsidian Integration** ([setup guide](#-obsidian-integration-optional))
 - [mcpvault](https://github.com/bitbonsai/mcpvault) — Obsidian vault MCP server (no app required)
 - [obsidian-skills](https://github.com/kepano/obsidian-skills) — Claude Code skills for Obsidian Markdown by Steph Ango (Obsidian CEO)
 
