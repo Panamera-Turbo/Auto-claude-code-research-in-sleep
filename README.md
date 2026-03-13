@@ -50,7 +50,7 @@ See [full setup guide](#%EF%B8%8F-setup) for details and [alternative model comb
 - 🖥️ **GPU deployment** — auto rsync, screen sessions, multi-GPU parallel experiments, live monitoring
 - 🔀 **Flexible models** — default Claude × GPT-5.4, also supports [GLM + GPT, GLM + MiniMax](#-alternative-model-combinations) — no Claude API required
 - 🛑 **Human-in-the-loop** — configurable checkpoints at key decisions. `AUTO_PROCEED=true` for full autopilot, `false` to approve each step
-- 📊 **15 composable skills** — mix and match, or chain into full pipelines (`/idea-discovery`, `/auto-review-loop`, `/research-pipeline`)
+- 📊 **16 composable skills** — mix and match, or chain into full pipelines (`/idea-discovery`, `/auto-review-loop`, `/research-pipeline`)
 
 ---
 
@@ -82,9 +82,9 @@ These skills compose into a full research lifecycle. The three workflows can be 
 ### Full Pipeline 🚀
 
 ```
-/research-lit → /idea-creator → /novelty-check → implement → /run-experiment → /auto-review-loop → /paper-plan → /paper-figure → /paper-write → submit
-  (survey)      (brainstorm)    (verify novel)    (code)      (deploy & run)    (review & fix)      (outline)     (plots)        (LaTeX+PDF)    (done!)
-  ├──── Workflow 1: Idea Discovery ────┤              ├──── Workflow 2: Auto Loop ────┤   ├────── Workflow 3: Paper Writing ──────┤
+/research-lit → /idea-creator → /novelty-check → implement → /run-experiment → /auto-review-loop → /paper-plan → /paper-figure → /paper-write → /auto-paper-improvement-loop → submit
+  (survey)      (brainstorm)    (verify novel)    (code)      (deploy & run)    (review & fix)      (outline)     (plots)        (LaTeX+PDF)        (polish ×2)          (done!)
+  ├──── Workflow 1: Idea Discovery ────┤              ├──── Workflow 2: Auto Loop ────┤   ├──────────────── Workflow 3: Paper Writing ──────────────────┤
 ```
 
 📝 **Blog post:** [梦中科研全流程开源](http://xhslink.com/o/2iV33fYoc7Q)
@@ -248,6 +248,44 @@ The output is a ranked `IDEA_REPORT.md` with hypotheses, pilot results, reviewer
 
 **Tested end-to-end:** Generated a 9-page ICLR 2026 theory paper (7 sections, 29 citations, 4 figures, 2 comparison tables) from a single NARRATIVE_REPORT.md — zero compilation errors, zero undefined references.
 
+#### Auto Paper Improvement Loop ✨
+
+After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 rounds of GPT-5.4 xhigh review → fix → recompile, autonomously polishing the paper from rough draft to near-submission quality.
+
+**Score Progression (Real Test — MoLR-MoG ICLR 2026 Theory Paper):**
+
+| Round | Score | Verdict | Key Changes |
+|-------|-------|---------|-------------|
+| Round 0 (original) | 4/10 | No | Baseline generated paper |
+| Round 1 | 6/10 | Almost | Fixed assumptions, softened overclaims, renamed notation |
+| Round 2 | ~7/10 | Almost→Yes | Added synthetic experiments, formal truncation proposition |
+
+**+3 points in 2 rounds** — from "clear reject" to "borderline accept."
+
+<details>
+<summary>Round 1 fixes (6 items)</summary>
+
+1. **CRITICAL — Bounded support vs Gaussian mismatch**: Assumption 1 assumed bounded support `||x|| ≤ R`, but the model uses exact Gaussians (unbounded). Replaced with "Bounded Parameters and Sub-Gaussian Tails" using truncated Gaussian mixtures.
+2. **CRITICAL — Theory-practice gap**: Theory assumes linear encoders, experiments use nonlinear VAEs. Softened "validate" → "demonstrate practical relevance" and added explicit disclaimer.
+3. **MAJOR — Missing quantitative metrics**: Added parameter count table (latent vs total), noted "10× fewer" refers to latent score network only.
+4. **MAJOR — Theorem not self-contained**: Added "Interpretation" paragraph listing all dependencies explicitly.
+5. **MAJOR — Optimization overclaim**: Scoped "first convergence guarantee" to "first local guarantee for separated MoLR-MoG with fixed encoders."
+6. **MAJOR — Notation confusion**: Renamed `n_k` (modes) → `m_k` to avoid clash with `n` (sample size). Added Notation paragraph.
+
+</details>
+
+<details>
+<summary>Round 2 fixes (4 items)</summary>
+
+1. **MAJOR — Missing theory-aligned experiments**: Added §4.5 "Synthetic Validation" — estimation error vs ambient dimension D (confirming dimension-free bound) + optimization convergence rate (confirming linear rate).
+2. **MAJOR — Overclaim softening**: "comparable to U-Net" → "qualitatively competitive" across all files.
+3. **MAJOR — Informal truncation argument**: Added formal Proposition 1 bounding truncation error at O(n⁻²), dominated by O(n⁻¹/²) estimation error.
+4. **MINOR — Weak limitations**: Expanded to explicitly list all assumptions (known K, d_k, m_k; fixed encoders; separation).
+
+</details>
+
+All three PDFs preserved for comparison: `main_round0_original.pdf`, `main_round1.pdf`, `main_round2.pdf`.
+
 ---
 
 ## 🧰 All Skills
@@ -269,6 +307,7 @@ The output is a ranked `IDEA_REPORT.md` with hypotheses, pilot results, reviewer
 | 📊 [`paper-figure`](skills/paper-figure/SKILL.md) | Publication-quality matplotlib/seaborn plots from experiment data, with LaTeX snippets | Optional |
 | ✍️ [`paper-write`](skills/paper-write/SKILL.md) | Section-by-section LaTeX generation with ICLR/NeurIPS/ICML templates | Yes |
 | 🔨 [`paper-compile`](skills/paper-compile/SKILL.md) | Compile LaTeX to PDF, auto-fix errors, submission readiness checks | No |
+| 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2-round review→fix→recompile loop on generated paper (4/10 → 7/10) | Yes |
 
 ---
 
