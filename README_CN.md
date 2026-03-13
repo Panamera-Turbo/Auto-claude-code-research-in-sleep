@@ -20,6 +20,28 @@
 >
 > Claude Code 的优势是快速丝滑的执行，Codex（GPT-5.4 xhigh）虽然慢但审稿更严谨深入。两者**速度 × 严谨**的互补特性，比单模型自我对话效果更好。
 
+## 🚀 快速开始
+
+```bash
+# 1. 安装 skills
+git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git
+cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/
+
+# 2. 配置 Codex MCP（review 类 skill 需要）
+npm install -g @openai/codex
+claude mcp add codex -s user -- codex mcp-server
+
+# 3. 在 Claude Code 中使用
+claude
+> /auto-review-loop               # 一夜迭代论文
+> /idea-creator DLLMs post training  # 从零开始找 idea
+> /research-lit discrete diffusion   # 搜索相关论文
+```
+
+详见[完整安装指南](#%EF%B8%8F-安装)和[替代模型组合](#-替代模型组合)（无需 Claude/OpenAI API）。
+
+---
+
 ## 📈 真实运行效果
 
 某 ML 研究项目上的 4 轮自动循环，从 borderline reject 到可投稿：

@@ -20,6 +20,28 @@ Custom [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills for 
 >
 > Claude Code's strength is fast, fluid execution; Codex (GPT-5.4 xhigh) is slower but more deliberate and rigorous in critique. These complementary styles — **speed × rigor** — produce better outcomes than either model talking to itself.
 
+## 🚀 Quick Start
+
+```bash
+# 1. Install skills
+git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git
+cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/
+
+# 2. Set up Codex MCP (for review skills)
+npm install -g @openai/codex
+claude mcp add codex -s user -- codex mcp-server
+
+# 3. Use in Claude Code
+claude
+> /auto-review-loop               # iterate your paper overnight
+> /idea-creator DLLMs post training  # brainstorm ideas from scratch
+> /research-lit discrete diffusion   # survey recent papers
+```
+
+See [full setup guide](#%EF%B8%8F-setup) for details and [alternative model combinations](#-alternative-model-combinations) if you don't have Claude/OpenAI API.
+
+---
+
 ## 📈 Score Progression (Real Run)
 
 A real overnight 4-round run on an ML research project, from borderline reject to submission-ready:
