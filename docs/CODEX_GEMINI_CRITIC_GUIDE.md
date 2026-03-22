@@ -2,6 +2,8 @@
 
 Use **Codex CLI as the executor** and **Gemini as a structured local critic**.
 
+[中文版本](CODEX_GEMINI_CRITIC_GUIDE_CN.md)
+
 This path is useful when you want:
 
 - Codex to do the implementation work
@@ -10,6 +12,12 @@ This path is useful when you want:
 - saved artifacts for every review round: prompt, raw response, parsed JSON, markdown summary
 
 This guide adds a local toolchain alongside ARIS. It does **not** replace `skills/skills-codex/`.
+
+## Why This Path
+
+- Codex CLI is a practical low-friction local executor for many users.
+- Gemini is often the easiest external critic to reach through API access, CLI access, or existing student plans.
+- Pairing the two keeps the executor/reviewer split while lowering both cost and setup friction for ARIS-style workflows.
 
 ## What This Adds
 
