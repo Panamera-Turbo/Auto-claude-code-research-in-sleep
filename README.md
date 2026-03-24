@@ -28,6 +28,8 @@ Custom [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills for 
 
 ## 🎯 More Than Just a Prompt
 
+> These are full pipelines — you can also use each workflow independently. Already have an idea? Skip to Workflow 1.5. Have results? Jump to Workflow 3. Got reviews? Jump to Workflow 4. See [Quick Start](#-quick-start) for all commands and [Workflows](#-workflows) for the full breakdown.
+
 **Basic mode** — give ARIS a research direction, it handles everything:
 
 ```
@@ -73,9 +75,7 @@ Three safety gates — rebuttal will NOT finalize if any fails:
 
 Two outputs: `PASTE_READY.txt` (exact char count, paste to venue) + `REBUTTAL_DRAFT_rich.md` (extended version for manual editing).
 
-> From idea to paper to podium to rebuttal — one toolchain.
->
-> These are full pipelines — you can also use each workflow independently. Already have an idea? Skip to Workflow 1.5. Have results? Jump to Workflow 3. Got reviews? Jump to Workflow 4. See [Quick Start](#-quick-start) for all commands and [Workflows](#-workflows) for the full breakdown.
+> *💡 From idea to paper to podium to rebuttal — one toolchain. 🌱*
 
 ## 🏆 Papers Accepted with ARIS
 
